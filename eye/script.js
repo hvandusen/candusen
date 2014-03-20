@@ -5,21 +5,26 @@ var center = new Point(400,200);
 //create shapes based on screen size
 var outerShape = new Path.Circle(
 	new Point(0,window.height/4)+center,
-	new Size(window.width*.65,(window.height*.65)));
+	new Size(window.width*.65,(window.height*.65))
+	);
 	
 var middleShape = new Path.Circle(
 	new Point(window.width/4,window.height/4)+center,
-	new Size(window.width*.40,(window.height*.40)));
+	new Size(window.width*.40,(window.height*.40))
+	);
 
 var innerShape = new Path.Circle(
 	new Point(window.width/2.8,window.height/3.5)+center,
-	new Size(window.width*.18,window.height*.2));
+	new Size(window.width*.18,window.height*.2)
+	);
 
 var frameSpeed = 2;
-var step = 0; //gets incremented to change colors
+//gets incremented every frame up to 255, then reset
+var step = 0;
 var stringOuter ="";
 var stringMiddle ="";
 var stringInner ="";
+
 //initialize the outer shape's colors. each shape is based on r,g,b of outer shape
 var r=255;
 var g = 0;
@@ -45,9 +50,8 @@ function onMouseDown(event){
 	phase+=2
 }
 
-//calling next color actually changes the other shapes too..
+//calling next color actually updates the color strings
 function onFrame(event){
-	
 	if(event.count%frameSpeed==0)
 		{
 		nextColor();
