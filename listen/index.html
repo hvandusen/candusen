@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> what is good</title>
+</head>
+<body> 
+	<script src='raphael.js'></script>
+	<script src='secondary.js'></script>
+	<script src='abbey-load.js'></script>
+	<script>
+	var screen = window;
+	var audioReady = false;
+	var totalSpeed = 20000;
+	var moveTime = totalSpeed;
+	var started = false;
+	var squareSize = 130;
+	var paper = Raphael(0, 0, 2000, 2000);
+	var rect = paper.rect(10,10, squareSize,squareSize);	
+	var currentDirection;
+	var toTheRight = 1;
+	var bounces = 1;
+	var rotation = 0;
+	var textColor = prettyRaCo();
+	var cheat = false;
+	var t = paper.text(50, 50, "Wait a sec");
+	t.attr({'fill':textColor,
+			'size': 10});
+//------------------------------------------------------
+    var context = new webkitAudioContext();
+	var source = context.createBufferSource();  
+	var clips = {};	
+	var gainNode = context.createGainNode();
+	gainNode.gain.value = 0.5;
+	var songDuration;
+	var currentTime;
+	
+	
+	//make a new downward animation function
+	function returnDown(){
+		return new Raphael.animation({
+        y:bounces*squareSize,
+        callback:function(){
+        bounces++;
+        console.log(bounces);
+        if(toTheRight)
+        	{anim = returnLeft(); rect.animate(anim);}
+        else
+        	{anim = returnRight(); rect.animate(anim);}
+        console.log('to the right: '+toTheRight);
+        toTheRight = !toTheRight;
+        }
+    },1000);
+	}
+
+	setInterval(function(){
+		},1000);
+	
+	var down = new Raphael.animation({
+        y:bounces*squareSize,
+        callback:function(){
+        bounces++;
+        if(toTheRight)
+        	{anim = returnLeft(); rect.animate(anim);}
+        else
+        	{anim = returnRight(); rect.animate(anim);}
+        console.log('to the right: '+toTheRight);
+        toTheRight = !toTheRight;
+        }
+    },1000);
+    
+    function returnLeft(){ 
+    	return new Raphael.animation({
+    x:1,
+    callback:function(){
+		anim = returnDown();
+		rect.animate(anim);
+    }
+    },moveTime);
+    }
+    
+    function returnRight(){ 
+    	return new Raphael.animation({
+		x:screen.innerWidth-squareSize, 
+		fill:prettyRaCo(),
+		callback: function(){
+		down.y = bounces*squareSize;
+		anim = returnDown();
+		rect.animate(anim);
+		}},moveTime);
+	}
+	
+	rect.click(function(){
+			started = true;
+			this.animate(anim);
+			play(clips.mercy);
+			
+	});
+		
+	var anim = returnRight();
+	
+	rect.mouseover(function(){
+	var rec = this;
+		if(started && audioReady)
+		this.animate(anim);
+		source.connect(gainNode);
+	});
+	
+	rect.mouseout(function(){
+	//return;
+		moveTime = (screen.innerWidth-squareSize)
+		this.attr("fill", prettyRaCo());
+		this.pause(anim);
+		source.disconnect();
+	}
+	, false);
+	var d = new Date();
+var n = d.getMilliseconds();
+n=n-d.getMilliseconds();
+console.log(n);
+	
+		document.addEventListener('mousemove', function(){
+		cheat = false;		
+		        	});
+		        	
+		        	
+    //--------------------------------------------------------------------------------
+	
+	var assets = new AbbeyLoad( [{
+	             'mercy': 'mercy,mercy.mp3'}], 	
+	             function (buffers) {
+					 clips = buffers;
+					 console.dir(buffers);
+			 		rect.attr("fill", textColor);
+			 		audioReady = true;
+	         }); 
+	         
+	function play(clip){
+	console.log(clip);
+		source.buffer = clip;
+		source.loop = false;
+	 	source.connect(gainNode);
+		gainNode.connect(context.destination);
+		source.start(0);	
+}       
+	//play(clips.mercy);
+
+	
+	
+	</script>
+
+</body>
+</html>	

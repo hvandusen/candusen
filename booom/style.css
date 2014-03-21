@@ -1,0 +1,60 @@
+button {
+	z-index: 0;
+	padding: 15px;
+	padding-right:80px;
+	padding-left:80px;
+	border-style:dashed;
+	
+
+}
+
+input {
+	
+
+
+}
+
+a{
+	font-size: x-large;
+	color:blue;
+	
+}
+
+#prompt {
+	
+	color: red;
+	
+}
+
+#visual {
+		width : 47%;
+		z-index: 0;
+	top:180px;
+	right:3%;
+	position: absolute;
+	
+	
+}
+
+#myCanvas {
+		width : 47%;
+		z-index: 0;
+	top:30px;
+	left:3%;
+}
+
+button:hover{
+	
+	background-color:aqua;
+	
+}
+
+label {
+			padding: 15px;
+	padding-right:80px;
+	padding-left:80px;
+	border-style: groove;
+	color:orange;
+
+	
+}
