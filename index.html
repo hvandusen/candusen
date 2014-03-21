@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">   	
+	<title> what is good</title>
+</head>
+<body> 
+<a class='link' href='eye'target='_blank'>eye</a>
+<a class='link' href='eye'>eye</a>
+<script type="text/javascript" src="secondary.js"></script>        
+<script type="text/javascript" src="jquery-2.0.0.min.js"></script>        
+<script>	
+
+var links = $('.link');
+console.dir(links);
+for(var i=0;i<links.length;i++){
+	$(links[i]).css({'left': num(window.outerWidth),
+					 'top' : num(window.outerHeight),
+					 'color': prettyRaCo()
+					});
+}
+</script>
+</body>
+</html>	
