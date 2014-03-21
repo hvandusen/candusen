@@ -249,7 +249,7 @@ isPlaying = 1;
 		{	
 			ctx.font = 'italic 25pt Calibri';
 			ctx.fillStyle = "black";
-			ctx.fillText("click me to remember what used to be!",10,600);
+			ctx.fillText("then click me!",10,600);
 			ctx.beginPath();
 			ctx.strokeStyle = prettyRaCo();
 			num = Math.floor(Math.random()*40);
