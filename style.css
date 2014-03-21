@@ -1,0 +1,21 @@
+canvas {
+width: 100%;
+background-color: white;
+
+}
+
+img {
+visibility:hidden;
+position:fixed;
+top:15px;
+left:12px;
+
+}
+
+a{
+position:fixed;
+font-size: xx-large;
+left:100;
+
+}
+
