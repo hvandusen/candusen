@@ -2,9 +2,11 @@
 <html>
 <head>
 	<link rel="stylesheet" href="style.css">   	
-	<title> what is good</title>
+	<title> Henry Van Dusen</title>
 </head>
 <body> 
+	<h1>A few of Henry Van Dusen's projects</h1>
+	<br>
 <a class='link' href='booom'target='_blank'>booom</a>
 <a class='link' href='ellsworth'target='_blank'>ellsworth</a>
 <a class='link' href='eye'target='_blank'>eye</a>
@@ -23,10 +25,10 @@
 var links = $('.link');
 console.dir(links);
 for(var i=0;i<links.length;i++){
-	//$(links[i]).css({'left': num(window.outerWidth),
+	$(links[i]).css({//'left': num(window.outerWidth),
 	//				 'top' : num(window.outerHeight),
-	//				 'color': prettyRaCo()
-	//				});
+					 'color': prettyRaCo()
+					});
 }
 </script>
 </body>
