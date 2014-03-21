@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">   
+<script type="text/javascript" src="jquery-2.0.0.min.js"></script>        
+
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="paper.js"></script>
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas">
+  var current = new Point(0,0); 
+  var xNeg = 1;
+  var yNeg = 1;
+  var size = 15;
+  var strokeWidth = 0.8;
+
+function onMouseMove(event)
+{   
+        var x = Math.floor(Math.random()*size*xNeg);
+        var y = Math.floor(Math.random()*size*yNeg);
+        if(current.x>view.size._width)
+            {xNeg *= -1;
+            current.x = current.x-(size+5);
+            }
+        if(current.x<0)
+        {
+            current.x+=size+5;
+            xNeg *= -1;
+        }
+        
+        if(current.y>view.size._height)
+        {yNeg *= -1;
+        current.y = current.y-(size+5);
+        }
+
+        if(current.y<0)
+        {
+            current.y+=(size+5);
+            yNeg *= -1;
+        }
+
+
+        //project.activeLayer.removeChildren();
+        //clearCanvas = false;
+    var path2 = new Path();
+    // Give the stroke a color
+    path2.strokeColor = prettyRaCo();
+    path2.strokeWidth = strokeWidth+.01;
+    strokeWidth += 0.001;
+    path2.lineCap = "round";
+    //console.dir(current);
+    path2.moveTo(current.x,current.y);
+    current = current + new Point(x,y);
+    path2.lineTo(current);
+    //console.log(x,y);
+    path2.simplify();
+
+
+/*for(var i = 0;i<100;i++)
+{
+    // Create a Paper.js Path to draw a line into it:
+    var path = new Path();
+    // Give the stroke a color
+    path.strokeColor = prettyRaCo();
+
+   var number = Math.floor(Math.random()*100-50);
+   var number2 = Math.floor(Math.random()*100-50);
+
+
+    var start = event.point;
+    var start2 = event.point+ [number,number2];
+    // Move to start and draw a line from there
+    path.moveTo(start);
+    // Note the plus operator on Point objects.
+    // PaperScript does that for us, and much more!
+   var range = Math.floor(Math.random()*1000-500);
+   var num = Math.floor(Math.random()*range-range/2);
+   var num2 = Math.floor(Math.random()*range-range/2);
+    path.lineTo(start + [ num, num2 ]);
+
+}
+*/
+}
+
+
+    function prettyRaCo()
+        {
+            var key =  Math.floor(Math.random()*6);
+            var text = "rgb(";
+            var num =  Math.floor(Math.random()*256);
+            if(key ==0)
+            text= text+ "0,255,"+num+")";
+             if(key ==1)
+            text= text+ "0,"+num+",255)";
+             if(key ==2)    
+            text= text+ "255, 0,"+num+")";
+             if(key ==3)
+            text= text+ "255,"+num+",0)";
+             if(key ==4)        
+            text= text+ num+",255,0)";
+             if(key ==5)        
+            text= text+ num+",0,255)";
+            return text;
+        }   
+</script>
+
+
+</head>
+<body>
+    <canvas id="myCanvas" resize></canvas>
+</body>
+</html>
