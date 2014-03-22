@@ -8,7 +8,7 @@ var purple;
 function onMouseMove(event) {
       var path = new Path.Circle({
         center: event.point,
-        radius: num(55)-35,
+        radius: num(25)-15,
         fillColor: prettyRaCo()
       });
 
